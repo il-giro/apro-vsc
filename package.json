@@ -1,0 +1,67 @@
+{
+  "name": "apro-vsc",
+  "displayName": "Apro VSC",
+  "description": "🔥Hammon🔥",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "apro-vsc.testSound",
+        "title": "🔊 Play Test Sound",
+        "category": "Apro VSC"
+      }
+    ],
+    "configuration": {
+      "title": "Apro VSC Sound",
+      "properties": {
+        "apro-vsc.selectSound": {
+          "type": "string",
+          "default": "startup1.mp3",
+          "enum": [
+            "startup1.mp3",
+            "startup2.mp3"
+          ],
+          "enumDescriptions": [
+            "Apro Visual Studio Code!",
+            "Inizia il mio crazy talk!"
+          ],
+          "description": "Seleziona la versione che preferisci.🔥"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "copyfiles -u 1 assets/* dist/ && esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "copyfiles -u 1 assets/* dist/ && esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "check-types": "tsc --noEmit",
+    "package": "npm run compile && vsce package",
+    "publish": "npm run compile && vsce publish"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.110.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.27.3",
+    "eslint": "^9.39.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
+  },
+  "dependencies": {
+    "play-sound": "^1.1.6"
+  }
+}
